@@ -3,13 +3,28 @@
 
 var font;
 var vehicles = [];
-
+var fontSize = 3;
+var wideText = 0;
 function preload() {
   font = loadFont('AvenirNextLTPro-Demi.otf');
 }
 
 function setup() {
-  createCanvas(600, 300);
+    textAlign(CENTER);
+
+fill(255);
+stroke(0);
+  createCanvas(windowWidth, windowHeight);
+  print(fontSize);
+  wideText = font.textBounds("Rachel",width/2,0,fontSize).w;
+  while(wideText < width-50){
+      fontSize++;
+      wideText = font.textBounds("Rachel",width/2,0,fontSize).w;
+      print("Font size is: "+fontSize);
+      print("Rachel width is: "+wideText);
+      print("windowWidth is: "+windowWidth);
+
+  }
   background(51);
   // textFont(font);
   // textSize(192);
@@ -17,7 +32,7 @@ function setup() {
   // noStroke();
   // text('train', 100, 200);
 
-  var points = font.textToPoints('train', 100, 200, 192, {
+  var points = font.textToPoints('Rachel', 0, width/2-font.textBounds("Rachel",width/2,0,fontSize).h/2, fontSize, {
     sampleFactor: 0.25
   });
 
